@@ -2,8 +2,8 @@
 
 ## Current Policy
 
-- Plugin artifact: `jp.igapyon:miku-indexgen-maven-plugin:1.2.0`
-- Runtime artifact: `jp.igapyon:miku-indexgen:1.2.0`
+- Plugin artifact: `jp.igapyon:miku-indexgen-maven-plugin:1.2.1`
+- Runtime artifact: `jp.igapyon:miku-indexgen:1.2.1`
 - Version policy: keep the plugin version aligned with the compatible runtime
   version unless a future release explicitly documents a mismatch.
 
@@ -13,7 +13,7 @@ Until the runtime artifact is available from a remote Maven repository, install
 it from the local runtime checkout:
 
 ```bash
-mvn -f ../miku-indexgen-java/miku-indexgen/pom.xml install
+mvn -f ../miku-indexgen-java/pom.xml install
 ```
 
 This command writes Maven artifacts to the local Maven repository. It should
