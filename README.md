@@ -17,7 +17,7 @@ is required for direct invocation.
 Generate an index for one directory:
 
 ```bash
-mvn jp.igapyon:miku-indexgen-maven-plugin:1.2.0:index \
+mvn jp.igapyon:miku-indexgen-maven-plugin:1.2.1:index \
   -Dmiku-indexgen.inputDirectory=docs \
   -Dmiku-indexgen.outputDirectory=target/generated-index \
   -Dmiku-indexgen.markdown=true
@@ -26,7 +26,7 @@ mvn jp.igapyon:miku-indexgen-maven-plugin:1.2.0:index \
 Generate indexes for each direct child directory:
 
 ```bash
-mvn jp.igapyon:miku-indexgen-maven-plugin:1.2.0:index-child-directories \
+mvn jp.igapyon:miku-indexgen-maven-plugin:1.2.1:index-child-directories \
   -Dmiku-indexgen.inputParentDirectory=docs-parent \
   -Dmiku-indexgen.outputDirectory=target/generated-index \
   -Dmiku-indexgen.markdown=true
@@ -44,11 +44,11 @@ into the local Maven repository before using the plugin from another project.
 Install the compatible runtime artifact:
 
 ```bash
-mvn -f ../miku-indexgen-java/miku-indexgen/pom.xml install
+mvn -f ../miku-indexgen-java/pom.xml install
 ```
 
 This installs the CLI/runtime jar as the Maven artifact
-`jp.igapyon:miku-indexgen:1.2.0` in the local Maven repository. The plugin uses
+`jp.igapyon:miku-indexgen:1.2.1` in the local Maven repository. The plugin uses
 that jar as a library dependency while the same jar can also be run with
 `java -jar` as the CLI runtime.
 
@@ -64,7 +64,7 @@ coordinate commands shown in Usage.
 The plugin depends on the runtime artifact by Maven coordinates:
 
 ```text
-jp.igapyon:miku-indexgen:1.2.0
+jp.igapyon:miku-indexgen:1.2.1
 ```
 
 It does not use a source-tree dependency on `miku-indexgen-java`.
@@ -104,7 +104,7 @@ For development of this plugin repository, install the compatible runtime
 artifact first when it is not already available from a Maven repository:
 
 ```bash
-mvn -f ../miku-indexgen-java/miku-indexgen/pom.xml install
+mvn -f ../miku-indexgen-java/pom.xml install
 ```
 
 Then build and test this plugin:

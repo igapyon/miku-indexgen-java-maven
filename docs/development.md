@@ -5,14 +5,14 @@
 This repository depends on the separated runtime artifact:
 
 ```text
-jp.igapyon:miku-indexgen:1.2.0
+jp.igapyon:miku-indexgen:1.2.1
 ```
 
 Install the local runtime artifact before testing this plugin when the runtime
 artifact is not available from a remote Maven repository:
 
 ```bash
-mvn -f ../miku-indexgen-java/miku-indexgen/pom.xml install
+mvn -f ../miku-indexgen-java/pom.xml install
 ```
 
 ## Verification Commands
