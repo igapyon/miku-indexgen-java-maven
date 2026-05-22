@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-VERSION="${1:-1.2.1}"
+VERSION="${1:-1.3.0}"
 ROOT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 WORK_DIR="$ROOT_DIR/workplace/smoke-maven-plugin"
 
@@ -23,6 +23,7 @@ mvn -q -N "jp.igapyon:miku-indexgen-maven-plugin:$VERSION:index" \
 
 test -f output/single/index.json
 test -f output/single/index.md
+grep '"generation":' output/single/index.json >/dev/null
 
 mvn -q -N "jp.igapyon:miku-indexgen-maven-plugin:$VERSION:index-child-directories" \
   -Dmiku-indexgen.inputParentDirectory=parent \
@@ -32,5 +33,6 @@ mvn -q -N "jp.igapyon:miku-indexgen-maven-plugin:$VERSION:index-child-directorie
 test -f output/children/child-a/index.json
 test -f output/children/child-a/index.md
 test -f output/children/child-b/index.json
+grep '"generation":' output/children/child-a/index.json >/dev/null
 
 echo "miku-indexgen Maven plugin smoke test passed."

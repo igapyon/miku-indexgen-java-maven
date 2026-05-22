@@ -37,6 +37,11 @@ Parameters:
 - `miku-indexgen.skip`:
   skip plugin execution
 
+Generated `index.json` includes runtime generation metadata from
+`miku-indexgen` `1.3.0`. This plugin intentionally keeps refresh behavior out
+of the Maven adapter; use the runtime CLI `--refresh-index` for refresh-from-
+metadata workflows.
+
 ## `index-child-directories`
 
 Goal:

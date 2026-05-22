@@ -8,8 +8,12 @@
   depend on the runtime artifact `jp.igapyon:miku-indexgen`.
 - Done: runtime-side cleanup removed the old `miku-indexgen-maven-plugin`
   module from `miku-indexgen-java`; this plugin repository now resolves the
-  runtime only as `jp.igapyon:miku-indexgen:1.2.1`.
+  runtime only as `jp.igapyon:miku-indexgen:1.3.0`.
 - TODO: decide the human push, tag, GitHub Release, and publication policy for
   this separated plugin repository.
-- TODO: keep plugin parameter docs synchronized with runtime README and CLI
+- Done: keep plugin parameter docs synchronized with runtime README and CLI
   vocabulary when directory or batch behavior changes.
+- Done: do not add a Maven refresh goal for now. Refresh-from-generation-
+  metadata remains a runtime CLI workflow because Maven plugin goals should
+  generate from Maven-configured inputs instead of treating an existing
+  generated `index.json` as the primary input.
