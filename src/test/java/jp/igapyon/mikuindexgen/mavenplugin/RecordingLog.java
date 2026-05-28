@@ -87,4 +87,13 @@ final class RecordingLog implements Log {
         }
         return count;
     }
+
+    boolean containsInfoLineStartingWith(String expectedPrefix) {
+        for (String line : infoLines) {
+            if (line != null && line.startsWith(expectedPrefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

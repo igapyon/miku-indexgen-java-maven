@@ -72,6 +72,10 @@ public class MikuIndexgenMojo extends AbstractMojo {
             }
             if (result.skipped()) {
                 getLog().info("skip: " + result.skippedOutputPath);
+            } else if (!result.outputMessages.isEmpty()) {
+                for (String outputMessage : result.outputMessages) {
+                    getLog().info(outputMessage);
+                }
             } else {
                 for (java.nio.file.Path generatedPath : result.generatedPaths) {
                     getLog().info("generated: " + generatedPath);

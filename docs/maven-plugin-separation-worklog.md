@@ -37,9 +37,9 @@ This document records the local separation work for
 - Separated Maven plugin repository: `miku-indexgen-java-maven`
 - Existing plugin module path in runtime repository:
   `miku-indexgen-maven-plugin`
-- Runtime artifact coordinates: `jp.igapyon:miku-indexgen:1.3.0`
+- Runtime artifact coordinates: `jp.igapyon:miku-indexgen:1.4.4`
 - Plugin artifact coordinates:
-  `jp.igapyon:miku-indexgen-maven-plugin:1.3.0`
+  `jp.igapyon:miku-indexgen-maven-plugin:1.4.4`
 - Goal prefix: `miku-indexgen`
 - Goals:
   - `index`
@@ -81,5 +81,5 @@ The repository shape follows `../miku-docx2md-java-maven`:
 
 The runtime repository cleanup was reported complete after Maven plugin
 separation. The runtime artifact is now resolved from the root runtime
-repository layout as `jp.igapyon:miku-indexgen:1.3.0`; runtime build output is
+repository layout as `jp.igapyon:miku-indexgen:1.4.4`; runtime build output is
 under root `target/`, not `miku-indexgen/target/`.

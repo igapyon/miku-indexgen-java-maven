@@ -68,6 +68,22 @@ class MikuIndexgenChildDirectoriesMojoTest {
     }
 
     @Test
+    void executeLogsRuntimeOutputStatusMessagesForChildDirectories() throws Exception {
+        Path parentDir = tempDir.resolve("parent");
+        Files.createDirectories(parentDir.resolve("b1"));
+        Files.write(parentDir.resolve("b1").resolve("sample.md"), "# Sample\n".getBytes("UTF-8"));
+
+        RecordingLog log = new RecordingLog();
+        MikuIndexgenChildDirectoriesMojo mojo = new MikuIndexgenChildDirectoriesMojo();
+        mojo.setLog(log);
+        mojo.setInputParentDirectory(parentDir.toFile());
+        mojo.setOutputDirectory(tempDir.resolve("out").toFile());
+        mojo.execute();
+
+        assertTrue(log.containsInfoLineStartingWith("add   : "));
+    }
+
+    @Test
     void executeWritesVerboseLogsThroughMojoLoggerForEachChildDirectoryWithoutDuplicatingBufferedLogs() throws Exception {
         Path parentDir = tempDir.resolve("parent");
         Files.createDirectories(parentDir.resolve("b1"));

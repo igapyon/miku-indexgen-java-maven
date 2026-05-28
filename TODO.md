@@ -8,7 +8,7 @@
   depend on the runtime artifact `jp.igapyon:miku-indexgen`.
 - Done: runtime-side cleanup removed the old `miku-indexgen-maven-plugin`
   module from `miku-indexgen-java`; this plugin repository now resolves the
-  runtime only as `jp.igapyon:miku-indexgen:1.3.0`.
+  runtime only as `jp.igapyon:miku-indexgen:1.4.4`.
 - TODO: decide the human push, tag, GitHub Release, and publication policy for
   this separated plugin repository.
 - Done: keep plugin parameter docs synchronized with runtime README and CLI
