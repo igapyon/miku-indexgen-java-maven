@@ -10,6 +10,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import jp.igapyon.mikuindexgen.coreapi.Indexgen;
+import jp.igapyon.mikuindexgen.coreapi.IndexgenBatchException;
 import jp.igapyon.mikuindexgen.coreapi.IndexgenOptions;
 import jp.igapyon.mikuindexgen.coreapi.IndexgenResult;
 
@@ -72,15 +73,38 @@ public class MikuIndexgenChildDirectoriesMojo extends AbstractMojo {
             }
             if (result.skipped()) {
                 getLog().info("skip: " + result.skippedOutputPath);
+            } else if (!result.outputMessages.isEmpty()) {
+                for (String outputMessage : result.outputMessages) {
+                    getLog().info(outputMessage);
+                }
             } else {
                 for (java.nio.file.Path generatedPath : result.generatedPaths) {
                     getLog().info("generated: " + generatedPath);
                 }
             }
             getLog().info("completed: " + result.subdirectories + " child directories processed");
+        } catch (IndexgenBatchException ex) {
+            logBatchResult(ex.getResult());
+            throw new MojoExecutionException("Failed to run miku-indexgen child-directory batch mode.", ex);
         } catch (Exception ex) {
             throw new MojoExecutionException("Failed to run miku-indexgen child-directory batch mode.", ex);
         }
+    }
+
+    private void logBatchResult(IndexgenResult result) {
+        for (String log : result.logs) {
+            if (!isVerboseLog(log)) {
+                getLog().info(log);
+            }
+        }
+        for (String outputMessage : result.outputMessages) {
+            getLog().info(outputMessage);
+        }
+        for (String failure : result.childFailureMessages) {
+            getLog().error("failed: " + failure);
+        }
+        getLog().info("completed: " + result.childDirectoriesProcessed + " child directories processed, "
+                + result.childDirectoriesFailed + " failed");
     }
 
     private static boolean isVerboseLog(String log) {

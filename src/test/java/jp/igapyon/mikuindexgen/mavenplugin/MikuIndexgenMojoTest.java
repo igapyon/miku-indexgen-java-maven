@@ -64,6 +64,20 @@ class MikuIndexgenMojoTest {
     }
 
     @Test
+    void executeLogsRuntimeOutputStatusMessages() throws Exception {
+        Files.write(tempDir.resolve("sample.md"), "# Sample\n".getBytes("UTF-8"));
+
+        RecordingLog log = new RecordingLog();
+        MikuIndexgenMojo mojo = new MikuIndexgenMojo();
+        mojo.setLog(log);
+        mojo.setInputDirectory(tempDir.toFile());
+        mojo.setOutputDirectory(tempDir.resolve("out").toFile());
+        mojo.execute();
+
+        assertTrue(log.containsInfoLineStartingWith("add   : "));
+    }
+
+    @Test
     void executeWritesVerboseLogsThroughMojoLoggerWithoutDuplicatingBufferedLogs() throws Exception {
         Files.write(tempDir.resolve("sample.md"), "# Sample\n".getBytes("UTF-8"));
 
