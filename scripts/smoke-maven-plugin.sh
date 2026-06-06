@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-VERSION="${1:-1.4.4}"
+VERSION="${1:-1.5.1}"
 ROOT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 WORK_DIR="$ROOT_DIR/workplace/smoke-maven-plugin"
 
