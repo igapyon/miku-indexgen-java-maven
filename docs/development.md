@@ -5,7 +5,7 @@
 This repository depends on the separated runtime artifact:
 
 ```text
-jp.igapyon:miku-indexgen:1.4.4
+jp.igapyon:miku-indexgen:1.5.1
 ```
 
 Install the local runtime artifact before testing this plugin when the runtime

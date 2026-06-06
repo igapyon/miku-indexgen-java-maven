@@ -38,7 +38,7 @@ Parameters:
   skip plugin execution
 
 Generated `index.json` includes runtime generation metadata from
-`miku-indexgen` `1.4.4`. The Maven log reports runtime output status lines
+`miku-indexgen` `1.5.1`. The Maven log reports runtime output status lines
 such as `add`, `update`, and `none`. This plugin intentionally keeps refresh
 behavior out of the Maven adapter; use the runtime CLI `--refresh-index` for
 refresh-from-metadata workflows.
