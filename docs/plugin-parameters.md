@@ -30,6 +30,8 @@ Parameters:
   emit verbose progress logs through the Maven logger
 - `includeExtensions`:
   file extensions configured in plugin XML
+- `excludeGlobs`:
+  input-relative glob patterns configured in plugin XML
 - `miku-indexgen.inputEncoding`:
   input text encoding, such as `utf8` or `shift_jis`
 - `miku-indexgen.outputEncoding`:
@@ -38,7 +40,7 @@ Parameters:
   skip plugin execution
 
 Generated `index.json` includes runtime generation metadata from
-`miku-indexgen` `1.5.1`. The Maven log reports runtime output status lines
+`miku-indexgen` `1.6.0`. The Maven log reports runtime output status lines
 such as `add`, `update`, and `none`. This plugin intentionally keeps refresh
 behavior out of the Maven adapter; use the runtime CLI `--refresh-index` for
 refresh-from-metadata workflows.

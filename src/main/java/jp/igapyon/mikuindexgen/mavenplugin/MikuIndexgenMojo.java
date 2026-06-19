@@ -45,6 +45,9 @@ public class MikuIndexgenMojo extends AbstractMojo {
     @Parameter
     private List<String> includeExtensions;
 
+    @Parameter
+    private List<String> excludeGlobs;
+
     @Parameter(defaultValue = "utf8", property = "miku-indexgen.inputEncoding")
     private String inputEncoding = "utf8";
 
@@ -105,6 +108,7 @@ public class MikuIndexgenMojo extends AbstractMojo {
         if (includeExtensions != null && !includeExtensions.isEmpty()) {
             options.includeExtensions = copyList(includeExtensions);
         }
+        options.excludeGlobs = copyList(excludeGlobs);
         options.inputEncoding = inputEncoding;
         options.outputEncoding = outputEncoding;
         return options;
@@ -148,6 +152,10 @@ public class MikuIndexgenMojo extends AbstractMojo {
 
     public void setIncludeExtensions(List<String> includeExtensions) {
         this.includeExtensions = copyList(includeExtensions);
+    }
+
+    public void setExcludeGlobs(List<String> excludeGlobs) {
+        this.excludeGlobs = copyList(excludeGlobs);
     }
 
     public void setInputEncoding(String inputEncoding) {

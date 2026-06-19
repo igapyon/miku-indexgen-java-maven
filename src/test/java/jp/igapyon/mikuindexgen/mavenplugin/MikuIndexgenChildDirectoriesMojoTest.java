@@ -1,6 +1,7 @@
 package jp.igapyon.mikuindexgen.mavenplugin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Files;
@@ -29,6 +30,7 @@ class MikuIndexgenChildDirectoriesMojoTest {
         mojo.setOverwrite(false);
         mojo.setVerbose(true);
         mojo.setIncludeExtensions(Arrays.asList("md"));
+        mojo.setExcludeGlobs(Arrays.asList("**/draft-*", "private/**"));
         mojo.setInputEncoding("utf8");
         mojo.setOutputEncoding("utf8");
 
@@ -44,6 +46,7 @@ class MikuIndexgenChildDirectoriesMojoTest {
         assertEquals(false, options.overwrite);
         assertTrue(options.verbose);
         assertEquals(Arrays.asList("md"), options.includeExtensions);
+        assertEquals(Arrays.asList("**/draft-*", "private/**"), options.excludeGlobs);
         assertEquals("utf8", options.inputEncoding);
         assertEquals("utf8", options.outputEncoding);
     }
@@ -100,5 +103,23 @@ class MikuIndexgenChildDirectoriesMojoTest {
 
         assertEquals(1, log.countInfoLine("verbose: reading-file=sample.md"));
         assertEquals(1, log.countInfoLine("verbose: reading-file=other.md"));
+    }
+
+    @Test
+    void executeHonorsExcludeGlobsForEachChildDirectory() throws Exception {
+        Path parentDir = tempDir.resolve("parent");
+        Files.createDirectories(parentDir.resolve("b1").resolve("private"));
+        Files.write(parentDir.resolve("b1").resolve("sample.md"), "# Sample\n".getBytes("UTF-8"));
+        Files.write(parentDir.resolve("b1").resolve("private").resolve("secret.md"), "# Secret\n".getBytes("UTF-8"));
+
+        MikuIndexgenChildDirectoriesMojo mojo = new MikuIndexgenChildDirectoriesMojo();
+        mojo.setInputParentDirectory(parentDir.toFile());
+        mojo.setOutputDirectory(tempDir.resolve("out").toFile());
+        mojo.setExcludeGlobs(Arrays.asList("private/**"));
+        mojo.execute();
+
+        String json = new String(Files.readAllBytes(tempDir.resolve("out").resolve("b1").resolve("index.json")), "UTF-8");
+        assertTrue(json.contains("\"path\":\"sample.md\""));
+        assertFalse(json.contains("private/secret.md"));
     }
 }
