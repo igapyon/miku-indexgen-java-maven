@@ -1,6 +1,7 @@
 package jp.igapyon.mikuindexgen.mavenplugin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Files;
@@ -29,6 +30,7 @@ class MikuIndexgenMojoTest {
         mojo.setOverwrite(false);
         mojo.setVerbose(true);
         mojo.setIncludeExtensions(Arrays.asList("md"));
+        mojo.setExcludeGlobs(Arrays.asList("**/draft-*", "private/**"));
         mojo.setInputEncoding("utf8");
         mojo.setOutputEncoding("utf8");
 
@@ -44,6 +46,7 @@ class MikuIndexgenMojoTest {
         assertEquals(false, options.overwrite);
         assertTrue(options.verbose);
         assertEquals(Arrays.asList("md"), options.includeExtensions);
+        assertEquals(Arrays.asList("**/draft-*", "private/**"), options.excludeGlobs);
         assertEquals("utf8", options.inputEncoding);
         assertEquals("utf8", options.outputEncoding);
     }
@@ -89,5 +92,22 @@ class MikuIndexgenMojoTest {
         mojo.execute();
 
         assertEquals(1, log.countInfoLine("verbose: reading-file=sample.md"));
+    }
+
+    @Test
+    void executeHonorsExcludeGlobs() throws Exception {
+        Files.createDirectories(tempDir.resolve("private"));
+        Files.write(tempDir.resolve("sample.md"), "# Sample\n".getBytes("UTF-8"));
+        Files.write(tempDir.resolve("private").resolve("secret.md"), "# Secret\n".getBytes("UTF-8"));
+
+        MikuIndexgenMojo mojo = new MikuIndexgenMojo();
+        mojo.setInputDirectory(tempDir.toFile());
+        mojo.setOutputDirectory(tempDir.resolve("out").toFile());
+        mojo.setExcludeGlobs(Arrays.asList("private/**"));
+        mojo.execute();
+
+        String json = new String(Files.readAllBytes(tempDir.resolve("out").resolve("index.json")), "UTF-8");
+        assertTrue(json.contains("\"path\":\"sample.md\""));
+        assertFalse(json.contains("private/secret.md"));
     }
 }

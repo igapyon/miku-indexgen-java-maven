@@ -17,7 +17,7 @@ is required for direct invocation.
 Generate an index for one directory:
 
 ```bash
-mvn jp.igapyon:miku-indexgen-maven-plugin:1.5.1:index \
+mvn jp.igapyon:miku-indexgen-maven-plugin:1.6.0:index \
   -Dmiku-indexgen.inputDirectory=docs \
   -Dmiku-indexgen.outputDirectory=target/generated-index \
   -Dmiku-indexgen.markdown=true
@@ -26,7 +26,7 @@ mvn jp.igapyon:miku-indexgen-maven-plugin:1.5.1:index \
 Generate indexes for each direct child directory:
 
 ```bash
-mvn jp.igapyon:miku-indexgen-maven-plugin:1.5.1:index-child-directories \
+mvn jp.igapyon:miku-indexgen-maven-plugin:1.6.0:index-child-directories \
   -Dmiku-indexgen.inputParentDirectory=docs-parent \
   -Dmiku-indexgen.outputDirectory=target/generated-index \
   -Dmiku-indexgen.markdown=true
@@ -48,7 +48,7 @@ mvn -f ../miku-indexgen-java/pom.xml install
 ```
 
 This installs the CLI/runtime jar as the Maven artifact
-`jp.igapyon:miku-indexgen:1.5.1` in the local Maven repository. The plugin uses
+`jp.igapyon:miku-indexgen:1.6.0` in the local Maven repository. The plugin uses
 that jar as a library dependency while the same jar can also be run with
 `java -jar` as the CLI runtime.
 
@@ -64,7 +64,7 @@ coordinate commands shown in Usage.
 The plugin depends on the runtime artifact by Maven coordinates:
 
 ```text
-jp.igapyon:miku-indexgen:1.5.1
+jp.igapyon:miku-indexgen:1.6.0
 ```
 
 It does not use a source-tree dependency on `miku-indexgen-java`.
@@ -92,6 +92,7 @@ artifact locally with the command above.
 - `miku-indexgen.overwrite`: overwrite existing output files
 - `miku-indexgen.verbose`: emit verbose progress logs through the Maven logger
 - `includeExtensions`: file extensions configured in plugin XML
+- `excludeGlobs`: input-relative glob patterns configured in plugin XML
 - `miku-indexgen.inputEncoding`: input text encoding, such as `utf8` or
   `shift_jis`
 - `miku-indexgen.outputEncoding`: output text encoding, such as `utf8` or
@@ -99,7 +100,7 @@ artifact locally with the command above.
 - `miku-indexgen.skip`: skip plugin execution
 
 Generated `index.json` includes runtime generation metadata from
-`miku-indexgen` `1.5.1`. The Maven log reports runtime output status lines
+`miku-indexgen` `1.6.0`. The Maven log reports runtime output status lines
 such as `add`, `update`, and `none`. This plugin does not expose a refresh
 goal; use the runtime CLI `--refresh-index` when an existing generated index
 should be refreshed from its stored generation metadata.
