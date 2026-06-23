@@ -83,3 +83,11 @@ The runtime repository cleanup was reported complete after Maven plugin
 separation. The runtime artifact is now resolved from the root runtime
 repository layout as `jp.igapyon:miku-indexgen:1.6.0`; runtime build output is
 under root `target/`, not `miku-indexgen/target/`.
+
+## Runtime 1.6.2 Follow-Up
+
+- Local runtime reference `../miku-indexgen-java` is at tag `v1.6.2`.
+- Updated this plugin repository to align with
+  `jp.igapyon:miku-indexgen:1.6.2`.
+- Runtime changes between `v1.6.0` and `v1.6.2` preserve the core API shape
+  used by the Mojo classes.

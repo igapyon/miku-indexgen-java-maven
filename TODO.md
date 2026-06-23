@@ -9,6 +9,9 @@
 - Done: runtime-side cleanup removed the old `miku-indexgen-maven-plugin`
   module from `miku-indexgen-java`; this plugin repository now resolves the
   runtime only as `jp.igapyon:miku-indexgen:1.6.0`.
+- Done: updated the plugin artifact and runtime dependency alignment to
+  `1.6.2` after the Java runtime was released as
+  `jp.igapyon:miku-indexgen:1.6.2`.
 - TODO: decide the human push, tag, GitHub Release, and publication policy for
   this separated plugin repository.
 - Done: keep plugin parameter docs synchronized with runtime README and CLI
