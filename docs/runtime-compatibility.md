@@ -2,8 +2,8 @@
 
 ## Current Policy
 
-- Plugin artifact: `jp.igapyon:miku-indexgen-maven-plugin:1.6.0`
-- Runtime artifact: `jp.igapyon:miku-indexgen:1.6.0`
+- Plugin artifact: `jp.igapyon:miku-indexgen-maven-plugin:1.6.2`
+- Runtime artifact: `jp.igapyon:miku-indexgen:1.6.2`
 - Version policy: keep the plugin version aligned with the compatible runtime
   version unless a future release explicitly documents a mismatch.
 
@@ -43,5 +43,5 @@ sh scripts/smoke-maven-plugin.sh
 
 The smoke script verifies full-coordinate invocation for both plugin goals.
 It also verifies that generated `index.json` files contain runtime generation
-metadata and that the plugin follows the `miku-indexgen` `1.6.0` runtime
+metadata and that the plugin follows the `miku-indexgen` `1.6.2` runtime
 contract.
